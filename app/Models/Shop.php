@@ -15,7 +15,7 @@ class Shop extends Model
         'country_id',
     ];
 
-    public function countryPriceModifier()
+    public function country()
     {
         return $this->belongsTo(Country::class);
     }

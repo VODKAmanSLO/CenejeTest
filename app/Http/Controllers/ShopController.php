@@ -34,11 +34,18 @@ class ShopController extends Controller
                         $header = $csv;
                         continue;
                     }
-
-                    // TODO zmešan vrstni red
-                    $id = $csv[0];
-                    $name = $csv[1];
-                    $rating = $csv[2];
+                    $idIndex = array_search("id", $header);
+                    $id = $csv[$idIndex];
+                    $nameIndex = array_search("ime", $header);
+                    if (!$nameIndex) {
+                        $nameIndex = array_search("naziv", $header);
+                    }
+                    $name = $csv[$nameIndex];
+                    $ratingIndex = array_search("ocena", $header);
+                    if (!$ratingIndex) {
+                        $ratingIndex = array_search("ocjena", $header);
+                    }
+                    $rating = $csv[$ratingIndex];
 //                    TODO refactor
                     $rating = (float)str_replace(",", ".", $rating);
                     Shop::updateOrCreate(['id' => $id],
@@ -46,5 +53,6 @@ class ShopController extends Controller
                 }
             }
         }
+        return redirect("/index");
     }
 }

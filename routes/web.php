@@ -17,5 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/upload', [App\Http\Controllers\ShopController::class, 'index']);
-Route::get('/upload/file', [App\Http\Controllers\ShopController::class, 'store']);
+Route::get('/index', [App\Http\Controllers\ShopController::class, 'index']);
+Route::get('/upload/store', [App\Http\Controllers\ShopController::class, 'store']);
