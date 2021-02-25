@@ -47,7 +47,7 @@ class ShopController extends Controller
                     }
                     $rating = $csv[$ratingIndex];
 //                    TODO refactor
-                    $rating = (float)str_replace(",", ".", $rating);
+                    $rating = floatval(str_replace(",", ".", $rating));
                     Shop::updateOrCreate(['id' => $id],
                         ['name' => $name, 'rating' => $rating, 'country_id' => $country->id]);
                 }
